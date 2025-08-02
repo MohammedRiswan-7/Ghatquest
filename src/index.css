@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 34 95% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 120 30% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 120 30% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 34 95% 53%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 120 10% 10%;
+  --foreground: 210 40% 98%;
+  --card: 120 10% 15%;
+  --card-foreground: 210 40% 98%;
+  --popover: 120 10% 10%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 95 55% 55%;
+  --primary-foreground: 24 9.8% 10%;
+  --secondary: 120 10% 20%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 120 10% 20%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 120 10% 20%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 120 10% 25%;
+  --input: 120 10% 25%;
+  --ring: 95 55% 55%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  min-height: 100vh;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #f7931e 100%);
+}
+
+.nature-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.glass-effect {
+  background: hsla(var(--background) / 0.5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsla(var(--border) / 0.5);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px hsla(var(--primary) / 0.1);
+  border-color: hsl(var(--primary));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #f7931e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
