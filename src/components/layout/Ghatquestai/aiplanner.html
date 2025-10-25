@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trip Planner | GhatQuest</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-start pt-10">
+
+  <h1 class="text-3xl font-bold mb-6">Plan Your Trip with AI 🧠</h1>
+
+  <form id="tripForm" class="bg-gray-800 p-6 rounded shadow-md w-full max-w-md space-y-4">
+    <div>
+      <label class="block mb-1">Where are you going?</label>
+      <input type="text" name="place" required class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" placeholder="e.g., Ooty, Munnar">
+    </div>
+    <div>
+      <label class="block mb-1">How many days?</label>
+      <input type="number" name="days" required min="1" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600">
+    </div>
+    <div>
+      <label class="block mb-1">Trip Type:</label>
+      <select name="type" required class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600">
+        <option value="Relaxation">Relaxation</option>
+        <option value="Sightseeing">Sightseeing</option>
+        <option value="Adventure">Adventure</option>
+      </select>
+    </div>
+    <button type="submit" class="w-full bg-green-500 py-2 rounded hover:bg-green-600 transition">Generate Plan</button>
+  </form>
+
+  <div id="result" class="mt-8 w-full max-w-2xl space-y-4"></div>
+
+  <script>
+    const form = document.getElementById('tripForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      result.innerHTML = '<p class="text-yellow-400">⏳ Generating your trip plan...</p>';
+
+      const place = form.place.value;
+      const days = form.days.value;
+      const type = form.type.value;
+
+      const response = await fetch('http://localhost:5000/generate-plan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ place, days, trip_type: type })
+      });
+
+      const data = await response.json();
+      result.innerHTML = `
+        <h2 class="text-2xl font-semibold">Your AI Trip Plan: ${type}</h2>
+        <pre class="bg-gray-800 p-4 rounded whitespace-pre-wrap">${data[type]}</pre>
+      `;
+    });
+  </script>
+
+</body>
+</html>

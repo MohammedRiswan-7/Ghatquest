@@ -9,6 +9,7 @@ import { hotels } from '@/data/content';
 const Hotels = ({ showFeatureToast }) => {
   const [userLocation, setUserLocation] = useState(null);
   const [nearbyHotels, setNearbyHotels] = useState([]);
+  const [showAll, setShowAll] = useState(false); // <-- new state
 
   // Get user location on mount
   useEffect(() => {
@@ -36,6 +37,11 @@ const Hotels = ({ showFeatureToast }) => {
     }
   }, [userLocation]);
 
+  // Determine what to display (sliced or full list)
+  const displayedHotels = showAll
+    ? (nearbyHotels.length > 0 ? nearbyHotels : hotels)
+    : (nearbyHotels.length > 0 ? nearbyHotels.slice(0, 3) : hotels.slice(0, 3));
+
   return (
     <section id="hotels" className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -49,12 +55,12 @@ const Hotels = ({ showFeatureToast }) => {
             <span className="gradient-text">Hotels Near Tourist Spots</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Handpicked accommodations with great ratings and convenient locations.
+            Handpicked accommodation with great ratings and convenient locations.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {(nearbyHotels.length > 0 ? nearbyHotels : hotels).map((hotel, index) => (
+          {displayedHotels.map((hotel, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -116,6 +122,15 @@ const Hotels = ({ showFeatureToast }) => {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        {/* See All Button */}
+        <div className="text-center mt-10">
+          {!showAll && (
+            <Button onClick={() => setShowAll(true)} className="px-6 py-2 text-lg">
+              See All Hotels
+            </Button>
+          )}
         </div>
       </div>
     </section>

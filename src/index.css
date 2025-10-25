@@ -26,6 +26,9 @@
   --ring: 34 95% 53%;
   --radius: 0.75rem;
 }
+input {
+  color: black !important;   /* force black text */
+}
 
 .dark {
   --background: 120 10% 10%;
@@ -102,4 +105,8 @@ body {
 
 .animate-pulse-slow {
   animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+input {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--input));
 }

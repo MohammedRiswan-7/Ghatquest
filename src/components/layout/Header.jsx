@@ -14,7 +14,7 @@ const Header = ({ activeSection, scrollToSection }) => {
             onClick={() => scrollToSection('home')}
           >
             <MapPin className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold gradient-text">Approach India</span>
+            <span className="text-2xl font-bold gradient-text">GhatQuest</span>
           </motion.div>
           
           <nav className="hidden md:flex space-x-6">
